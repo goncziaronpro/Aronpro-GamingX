@@ -1,0 +1,329 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AronPro GamingX</title>
+<meta name="theme-color" content="#080b16">
+<style>
+:root{--bg:#070a14;--card:#10182b;--card2:#151f37;--line:#293756;--blue:#42ddff;--purple:#9d5dff;--text:#f4f7ff;--muted:#a8b4ce;--gold:#ffda70}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 20% -10%,#192c57,transparent 40%),radial-gradient(ellipse at 100% 20%,#291343,transparent 32%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
+button,a{font:inherit}button{cursor:pointer}
+.topbar{position:sticky;top:0;z-index:20;background:#080b16ed;backdrop-filter:blur(18px);border-bottom:1px solid #26314a}
+.nav{max-width:1200px;margin:auto;padding:15px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{border:0;background:none;color:white;font-weight:1000;letter-spacing:.6px;font-size:1.06rem;white-space:nowrap}
+.brand span{color:var(--blue)}
+.navlinks{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.navlinks button{border:0;background:transparent;color:var(--muted);padding:10px 12px;border-radius:10px;font-weight:750}
+.navlinks button:hover,.navlinks button.active{color:white;background:#1c2945}
+.navlinks .avatar-nav{border:1px solid #3c527c;background:#17223b;color:white}
+.wrap{max-width:1200px;margin:auto;padding:26px 22px 70px}
+.page{display:none;animation:fade .22s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:.35;transform:translateY(4px)}to{opacity:1;transform:none}}
+.hero{min-height:440px;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center;padding:45px 0}
+.eyebrow{font-size:.77rem;letter-spacing:2.5px;font-weight:900;color:var(--blue);text-transform:uppercase}
+.hero h1{font-size:clamp(3rem,7vw,6rem);letter-spacing:-4px;line-height:.94;margin:18px 0}
+.hero h1 span{color:var(--blue);text-shadow:0 0 32px #42ddff45}
+.lead{color:var(--muted);font-size:1.08rem;line-height:1.7;max-width:600px}
+.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:25px}
+.btn{border:1px solid #3a4c70;background:var(--card2);color:white;padding:12px 16px;border-radius:12px;font-weight:800;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.16s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.btn.primary{border:0;background:linear-gradient(100deg,#167fe9,#8246ee);box-shadow:0 10px 30px #6847e32b}
+.heroart{min-height:350px;position:relative;display:grid;place-items:center;border:1px solid #354970;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 45%,#214a79 0,#171b3d 32%,#0d1224 72%);box-shadow:0 0 70px #5145ed16}
+.heroart:before,.heroart:after{content:"";position:absolute;width:250px;height:250px;border:1px solid #42ddff55;border-radius:50%;box-shadow:0 0 0 25px #9d5dff0c,0 0 0 60px #42ddff08}
+.heroart:after{width:160px;height:160px;border-color:#a66bff66}
+.astronaut{width:180px;filter:drop-shadow(0 15px 35px #42ddff55);z-index:1;animation:float 4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.heroart .tag{position:absolute;bottom:20px;left:20px;z-index:2}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:4px 0 30px}
+.stat,.panel,.tile{border:1px solid var(--line);background:linear-gradient(145deg,#121c31,#0d1323);border-radius:18px;padding:19px}
+.stat strong{display:block;font-size:1.55rem;color:var(--blue)}
+.stat span,.muted{color:var(--muted);font-size:.88rem}
+.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:12px 0 20px}
+.sectionhead h1,.sectionhead h2{margin:0;font-size:clamp(1.8rem,4vw,2.7rem);letter-spacing:-1px}
+.sectionhead p{color:var(--muted);margin:8px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tile{padding:0;overflow:hidden;transition:.2s}
+.tile:hover{transform:translateY(-3px);border-color:#526da1}
+.thumb{height:180px;display:grid;place-items:center;position:relative;overflow:hidden;background:linear-gradient(140deg,#163b65,#312052)}
+.thumb:before{content:"";position:absolute;width:150px;height:150px;border:1px solid #ffffff45;transform:rotate(35deg);box-shadow:0 0 0 20px #ffffff08,0 0 0 45px #ffffff06}
+.thumb svg{width:86%;height:86%;position:relative;z-index:1;filter:drop-shadow(0 8px 20px #0005)}
+.thumb .play{position:absolute;z-index:2;width:48px;height:48px;border-radius:50%;background:#080b16cc;border:1px solid #ffffff66;display:grid;place-items:center;font-size:1.3rem}
+.tilebody{padding:17px}
+.tilebody h3{margin:0 0 8px}
+.tilebody p{color:var(--muted);line-height:1.55;margin:0 0 14px;font-size:.93rem}
+.pill{display:inline-flex;border:1px solid #2d6178;color:var(--blue);border-radius:999px;padding:5px 9px;font-size:.72rem;font-weight:900;letter-spacing:.4px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.bigbalance{font-size:2.5rem;font-weight:1000;color:var(--gold)}
+.bar{height:8px;border-radius:50px;background:#26304a;overflow:hidden;margin:12px 0}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple))}
+.avatar-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:18px}
+.avatar-showcase{min-height:340px;border-radius:22px;border:1px solid #344a71;background:radial-gradient(circle at 50% 40%,#2a4778,#171b38 53%,#0d1223);display:grid;place-items:center;position:relative;overflow:hidden}
+.avatar-showcase:before{content:"";position:absolute;width:230px;height:230px;border:1px solid #54d9ff55;border-radius:50%;box-shadow:0 0 0 22px #8d5cff0b,0 0 0 50px #8d5cff08}
+.avatar-svg{position:relative;z-index:1;width:min(80%,240px);height:auto;filter:drop-shadow(0 14px 25px #42ddff3b)}
+.avatar-picks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.avatar-pick{display:flex;align-items:center;gap:12px;text-align:left;background:#111a2d;border:1px solid var(--line);border-radius:14px;padding:12px;color:white}
+.avatar-pick .mini{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:#202d4a}
+.avatar-pick.selected{border-color:var(--blue);box-shadow:0 0 0 2px #42ddff20}
+.avatar-pick small{display:block;color:var(--muted);margin-top:3px}
+.rankrow{display:grid;grid-template-columns:55px 1fr auto;gap:15px;align-items:center;padding:15px 12px;border-bottom:1px solid var(--line)}
+.rankrow:last-child{border-bottom:0}
+.rank{font-size:1.25rem;font-weight:950;color:var(--gold)}
+.rankname{font-weight:850}
+.rankxp{color:var(--blue);font-weight:900}
+.rankavatar{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:12px;background:#202c47;margin-right:10px;vertical-align:middle}
+.secretbox{border:1px dashed #7956c9;background:linear-gradient(120deg,#1b1735,#101729);border-radius:20px;padding:25px}
+.hidden{display:none!important}
+.foot{border-top:1px solid var(--line);margin-top:60px;padding:25px 0;color:var(--muted);font-size:.86rem}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);z-index:40;max-width:90vw;background:#f4f7ff;color:#09101d;padding:13px 18px;border-radius:12px;font-weight:850;box-shadow:0 10px 40px #0009;text-align:center}
+.back{background:transparent;border:0;color:var(--blue);font-weight:850;padding:8px 0;margin-bottom:15px;cursor:pointer}
+.shoplist{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.shopitem{border:1px solid var(--line);border-radius:14px;padding:14px;background:#10182a}
+.shopitem b{display:block;margin:5px 0}
+.small{font-size:.84rem;color:var(--muted);line-height:1.6}
+@media(max-width:780px){
+.nav{align-items:flex-start;flex-direction:column}
+.navlinks{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}
+.navlinks button{white-space:nowrap}
+.hero{grid-template-columns:1fr;padding:28px 0}
+.hero h1{letter-spacing:-2px}
+.heroart{min-height:290px}
+.grid{grid-template-columns:1fr 1fr}
+.split,.avatar-layout{grid-template-columns:1fr}
+.stats{gap:8px}
+.stat{padding:12px}
+.stat strong{font-size:1.2rem}
+.wrap{padding-left:15px;padding-right:15px}
+.shoplist{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+.grid{grid-template-columns:1fr}
+.thumb{height:200px}
+.avatar-picks{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="nav">
+<button class="brand" data-page="home" aria-label="Home">ARONPRO <span>GAMINGX</span></button>
+<nav class="navlinks" aria-label="Main navigation">
+<button data-page="videos">Videos</button>
+<button data-page="about">About</button>
+<button data-page="leaderboard">Leaderboard</button>
+<button class="avatar-nav" data-page="avatar">Avatar</button>
+<button data-page="home" data-scroll="secret">Secret</button>
+</nav></div></header>
+<main class="wrap">
+
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">⚡ Enter the unknown</div>
+      <h1>PLAY.<br><span>UNLOCK.</span><br>LEVEL UP.</h1>
+      <p class="lead">Your gaming universe starts here. Explore videos, build your player identity, collect rewards and discover the secrets hidden around the site.</p>
+      <div class="actions">
+        <button class="btn primary" data-page="videos">▶ Explore videos</button>
+        <button class="btn" data-page="avatar">✦ Build your avatar</button>
+      </div>
+    </div>
+    <div class="heroart">
+      <svg class="astronaut" viewBox="0 0 220 250" role="img" aria-label="Original illustrated gaming astronaut">
+        <defs>
+          <linearGradient id="suit" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8f8ff"/><stop offset="1" stop-color="#7e9ecb"/></linearGradient>
+          <linearGradient id="visor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#47eaff"/><stop offset="1" stop-color="#6747c8"/></linearGradient>
+        </defs>
+        <ellipse cx="110" cy="230" rx="67" ry="11" fill="#42ddff" opacity=".2"/>
+        <path d="M65 141Q31 151 35 192L58 202 79 165M155 141Q190 151 185 192L162 202 141 165" fill="url(#suit)" stroke="#d5f4ff" stroke-width="5"/>
+        <rect x="57" y="113" width="106" height="91" rx="36" fill="url(#suit)" stroke="#f4fbff" stroke-width="5"/>
+        <rect x="82" y="143" width="56" height="36" rx="10" fill="#142b4e" stroke="#42ddff" stroke-width="3"/>
+        <circle cx="97" cy="160" r="5" fill="#42ddff"/><circle cx="112" cy="160" r="5" fill="#a66bff"/><circle cx="127" cy="160" r="5" fill="#42ddff"/>
+        <rect x="72" y="32" width="96" height="101" rx="38" fill="url(#suit)" stroke="#f4fbff" stroke-width="5"/>
+        <rect x="82" y="51" width="76" height="61" rx="27" fill="url(#visor)" stroke="#162d51" stroke-width="5"/>
+        <path d="M94 67Q116 51 143 65" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+        <path d="M80 37L92 23 105 35M140 35L153 23 164 39" fill="#8ba7d5" stroke="#f4fbff" stroke-width="4"/>
+        <path d="M79 197L73 222Q72 231 83 231H103L110 203M141 197L147 222Q148 231 137 231H117L110 203" fill="url(#suit)" stroke="#f4fbff" stroke-width="5"/>
+        <circle cx="48" cy="75" r="5" fill="#42ddff"/><circle cx="181" cy="112" r="4" fill="#a66bff"/>
+        <path d="M37 105h8m-4-4v8M177 55h12m-6-6v12" stroke="#42ddff" stroke-width="2"/>
+      </svg>
+      <div class="tag"><span class="pill">PLAYER ONE · ARONPRO</span></div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong id="creditStat">100</strong><span>Credits</span></div>
+    <div class="stat"><strong id="clickStat">0 / 10</strong><span>Secret signal</span></div>
+    <div class="stat"><strong id="levelStat">LVL 1</strong><span>Player level</span></div>
+  </div>
+
+  <section>
+    <div class="sectionhead"><div><h2>Choose your next move</h2><p>Every door leads somewhere different.</p></div></div>
+    <div class="grid">
+      <article class="tile">
+        <div class="thumb"><svg viewBox="0 0 300 170"><defs><linearGradient id="v1"><stop stop-color="#42ddff"/><stop offset="1" stop-color="#8d55ff"/></linearGradient></defs><rect x="25" y="24" width="250" height="122" rx="14" fill="#10182c" stroke="#5a8bc2" stroke-width="2"/><path d="M55 120L115 58 150 94 190 42 245 120Z" fill="url(#v1)" opacity=".8"/><circle cx="225" cy="52" r="15" fill="#ffda70"/><path d="M137 72l30 17-30 17z" fill="white"/></svg></div>
+        <div class="tilebody"><h3>Videos</h3><p>Gaming uploads, challenges and new adventures.</p><button class="btn" data-page="videos">Open videos →</button></div>
+      </article>
+      <article class="tile">
+        <div class="thumb"><svg viewBox="0 0 300 170"><circle cx="150" cy="77" r="48" fill="#192b4b" stroke="#42ddff" stroke-width="3"/><path d="M103 125Q150 90 197 125L220 151H80Z" fill="#9d5dff"/><path d="M120 67Q150 39 180 67L171 94H129Z" fill="#42ddff"/><circle cx="135" cy="75" r="4" fill="#fff"/><circle cx="165" cy="75" r="4" fill="#fff"/></svg></div>
+        <div class="tilebody"><h3>Avatar Lab</h3><p>Create your player identity and choose your look.</p><button class="btn" data-page="avatar">Open avatar →</button></div>
+      </article>
+      <article class="tile">
+        <div class="thumb"><svg viewBox="0 0 300 170"><path d="M150 20L174 64 224 73 188 109 196 150 150 128 104 150 112 109 76 73 126 64Z" fill="#ffda70" stroke="#fff0b2" stroke-width="3"/><circle cx="150" cy="87" r="24" fill="#17213a"/><path d="M139 87l8 8 16-18" stroke="#42ddff" stroke-width="5" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="tilebody"><h3>Leaderboard</h3><p>See the players climbing toward the top.</p><button class="btn" data-page="leaderboard">View rankings →</button></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="secret">
+    <div class="sectionhead"><div><h2>🔐 Secret Zone</h2><p>Some discoveries are better when you find them yourself.</p></div><span class="pill">HIDDEN</span></div>
+    <div class="secretbox">
+      <div id="secretLocked"><h3>Signal encrypted</h3><p>Something is hidden in the site. Keep exploring.</p><div class="bar"><span id="secretProgress"></span></div><div class="small" id="secretHint">Signal strength: 0%</div></div>
+      <div id="secretUnlocked" class="hidden"><h3>✦ Secret room discovered</h3><p>You found it. A bonus is waiting for you.</p><button class="btn primary" id="secretReward">Claim bonus</button><span class="small" id="rewardState"></span></div>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="page-videos">
+  <button class="back" data-page="home">← Home</button>
+  <div class="sectionhead"><div><h1>Videos</h1><p>Every adventure starts with play.</p></div><span class="pill">ARONPRO GAMINGX</span></div>
+  <div class="grid">
+    <article class="tile"><div class="thumb"><svg viewBox="0 0 300 170"><rect x="28" y="20" width="244" height="130" rx="14" fill="#10182c" stroke="#42ddff" stroke-width="2"/><path d="M50 130L103 70 145 106 190 48 250 130Z" fill="#7a5cff"/><circle cx="222" cy="48" r="13" fill="#ffda70"/><path d="M137 69l32 18-32 18z" fill="#fff"/></svg><div class="play">▶</div></div><div class="tilebody"><span class="pill">ROBLOX</span><h3>Tycoon: From Noob to Pro</h3><p>Build your empire, upgrade your base and chase the next level.</p><a class="btn primary" href="https://www.youtube.com/" target="_blank" rel="noopener">Watch on YouTube ↗</a></div></article>
+    <article class="tile"><div class="thumb" style="background:linear-gradient(140deg,#164e69,#48245f)"><svg viewBox="0 0 300 170"><path d="M150 20L185 98 150 85 115 98Z" fill="#e8f9ff"/><path d="M150 85L210 128 171 119 150 145 129 119 90 128Z" fill="#42ddff"/><circle cx="66" cy="42" r="4" fill="#fff"/><circle cx="238" cy="35" r="5" fill="#fff"/><circle cx="232" cy="93" r="3" fill="#fff"/><circle cx="74" cy="112" r="3" fill="#fff"/></svg><div class="play">▶</div></div><div class="tilebody"><span class="pill">CHALLENGE</span><h3>Gaming Challenges</h3><p>Unexpected moments, big wins and tricky missions.</p><a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">Explore videos ↗</a></div></article>
+    <article class="tile"><div class="thumb" style="background:linear-gradient(140deg,#49306e,#16365c)"><svg viewBox="0 0 300 170"><circle cx="150" cy="82" r="54" fill="#172341" stroke="#b98cff" stroke-width="3"/><path d="M103 68l19-27 17 22M197 68l-19-27-17 22" fill="#42ddff"/><rect x="117" y="65" width="66" height="45" rx="17" fill="#8b5cff"/><circle cx="136" cy="82" r="5" fill="#fff"/><circle cx="164" cy="82" r="5" fill="#fff"/><path d="M137 98h26" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg><div class="play">▶</div></div><div class="tilebody"><span class="pill">COMING SOON</span><h3>More from AronPro</h3><p>This spot is ready for your next upload.</p><a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">Open YouTube ↗</a></div></article>
+  </div>
+  <p class="small">Video cards currently link to YouTube. Replace these links with your actual video URLs when they are ready.</p>
+</div>
+
+<div class="page" id="page-about">
+  <button class="back" data-page="home">← Home</button>
+  <div class="sectionhead"><div><h1>About</h1><p>Welcome to the world of AronPro GamingX.</p></div></div>
+  <div class="panel" style="padding:clamp(22px,5vw,45px)"><div class="eyebrow">THE PLAYER. THE WORLD. THE GAME.</div><h2 style="font-size:2.2rem;margin:12px 0">Built for curious players.</h2><p class="lead">AronPro GamingX brings gaming videos, player customization, challenges, collectibles and hidden surprises together in one place.</p><div class="grid" style="margin-top:25px"><div class="tile"><div class="tilebody"><h3>🎬 Watch</h3><p>Follow gameplay, experiments and new uploads.</p></div></div><div class="tile"><div class="tilebody"><h3>🧑‍🚀 Create</h3><p>Make your player identity your own.</p></div></div><div class="tile"><div class="tilebody"><h3>💎 Collect</h3><p>Earn demo credits and discover unlockables.</p></div></div></div></div>
+</div>
+
+<div class="page" id="page-leaderboard">
+  <button class="back" data-page="home">← Home</button>
+  <div class="sectionhead"><div><h1>Leaderboard</h1><p>Every XP point brings you closer to the top.</p></div><span class="pill">SEASON 01</span></div>
+  <div class="panel">
+    <div class="rankrow"><div class="rank">01</div><div><span class="rankavatar">👑</span><span class="rankname">PixelPhantom</span><div class="small">Legendary player</div></div><div class="rankxp">9,850 XP</div></div>
+    <div class="rankrow"><div class="rank">02</div><div><span class="rankavatar">🧑‍🚀</span><span class="rankname">AronPro</span><div class="small">Space explorer</div></div><div class="rankxp" id="playerXp">1,000 XP</div></div>
+    <div class="rankrow"><div class="rank">03</div><div><span class="rankavatar">🥷</span><span class="rankname">NeonNinja</span><div class="small">Shadow runner</div></div><div class="rankxp">875 XP</div></div>
+    <div class="rankrow"><div class="rank">04</div><div><span class="rankavatar">🤖</span><span class="rankname">ByteBender</span><div class="small">Code master</div></div><div class="rankxp">640 XP</div></div>
+    <div class="rankrow"><div class="rank">05</div><div><span class="rankavatar">🐉</span><span class="rankname">DragonByte</span><div class="small">Rare collector</div></div><div class="rankxp">510 XP</div></div>
+  </div>
+  <p class="small">The names and scores are demo entries. Online rankings will need verified player accounts and a server.</p>
+</div>
+
+<div class="page" id="page-avatar">
+  <button class="back" data-page="home">← Home</button>
+  <div class="sectionhead"><div><h1>Avatar Lab</h1><p>Your identity. Your style. Your next level.</p></div><span class="pill">PLAYER PROFILE</span></div>
+  <div class="avatar-layout">
+    <div class="avatar-showcase" id="avatarStage">
+      <svg class="avatar-svg" id="avatarSvg" viewBox="0 0 220 250" role="img" aria-label="Astronaut avatar">
+        <defs><linearGradient id="avSuit" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8f8ff"/><stop offset="1" stop-color="#789bc9"/></linearGradient><linearGradient id="avVisor" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#42eaff"/><stop offset="1" stop-color="#6445c6"/></linearGradient></defs>
+        <ellipse cx="110" cy="230" rx="67" ry="11" fill="#42ddff" opacity=".2"/>
+        <path d="M65 141Q31 151 35 192L58 202 79 165M155 141Q190 151 185 192L162 202 141 165" fill="url(#avSuit)" stroke="#f4fbff" stroke-width="5"/>
+        <rect x="57" y="113" width="106" height="91" rx="36" fill="url(#avSuit)" stroke="#f4fbff" stroke-width="5"/>
+        <rect x="82" y="143" width="56" height="36" rx="10" fill="#142b4e" stroke="#42ddff" stroke-width="3"/>
+        <circle cx="97" cy="160" r="5" fill="#42ddff"/><circle cx="112" cy="160" r="5" fill="#a66bff"/><circle cx="127" cy="160" r="5" fill="#42ddff"/>
+        <rect x="72" y="32" width="96" height="101" rx="38" fill="url(#avSuit)" stroke="#f4fbff" stroke-width="5"/>
+        <rect x="82" y="51" width="76" height="61" rx="27" fill="url(#avVisor)" stroke="#162d51" stroke-width="5"/>
+        <path d="M94 67Q116 51 143 65" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+        <path d="M80 37L92 23 105 35M140 35L153 23 164 39" fill="#8ba7d5" stroke="#f4fbff" stroke-width="4"/>
+        <path d="M79 197L73 222Q72 231 83 231H103L110 203M141 197L147 222Q148 231 137 231H117L110 203" fill="url(#avSuit)" stroke="#f4fbff" stroke-width="5"/>
+      </svg>
+    </div>
+    <div class="panel">
+      <h2 style="margin-top:0">Choose your look</h2><p class="small">Select a character to preview your player avatar.</p>
+      <div class="avatar-picks">
+        <button class="avatar-pick selected" data-avatar="astronaut"><span class="mini">🧑‍🚀</span><span><b>Astro</b><small>Space explorer</small></span></button>
+        <button class="avatar-pick" data-avatar="ninja"><span class="mini">🥷</span><span><b>Shadow</b><small>Ninja</small></span></button>
+        <button class="avatar-pick" data-avatar="robot"><span class="mini">🤖</span><span><b>Byte</b><small>Robot</small></span></button>
+        <button class="avatar-pick" data-avatar="dragon"><span class="mini">🐉</span><span><b>Drake</b><small>Dragon</small></span></button>
+      </div>
+      <div style="margin-top:18px"><label class="small" for="playerName">PLAYER NAME</label><br><input id="playerName" maxlength="18" value="AronPro" style="width:100%;margin-top:7px;background:#0a1020;color:white;border:1px solid var(--line);padding:11px;border-radius:10px"><button class="btn primary" id="saveAvatar" style="margin-top:12px;width:100%">Save player look</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="page" id="page-credits">
+  <button class="back" data-page="home">← Home</button>
+  <div class="sectionhead"><div><h1>Credit Vault</h1><p>Your rewards, missions and collectibles.</p></div><span class="pill">DEMO</span></div>
+  <div class="split">
+    <div class="panel"><div class="muted">YOUR BALANCE</div><div class="bigbalance"><span id="balance">100</span> ◈</div><div class="bar"><span id="creditProgress"></span></div><p class="small">Demo credits have no cash value.</p><button class="btn primary" id="missionBtn">Complete mission · +25 ◈</button><button class="btn" id="dailyBtn" style="margin-top:9px">Daily reward · +50 ◈</button></div>
+    <div class="panel"><h2 style="margin-top:0">Credit shop</h2><p class="small">Credit packs are shown as a preview. Payments are not enabled in this prototype.</p><div class="shoplist"><div class="shopitem">⚡<b>Starter</b><span class="muted">500 credits</span></div><div class="shopitem">💎<b>Pro</b><span class="muted">1,500 credits</span></div><div class="shopitem">👑<b>Legend</b><span class="muted">5,000 credits</span></div></div></div>
+  </div>
+</div>
+
+<footer class="foot"><div class="brand">ARONPRO <span>GAMINGX</span></div><p>Play curious. Discover more. This is a front-end prototype; online accounts, verified scores and real purchases are not enabled.</p><button class="btn" data-page="credits">Credit Vault</button></footer>
+</main>
+<div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const read=(k,d)=>{try{const v=localStorage.getItem('apgx2_'+k);return v===null?d:JSON.parse(v)}catch{return d}};
+const write=(k,v)=>{try{localStorage.setItem('apgx2_'+k,JSON.stringify(v))}catch{}};
+let state={credits:read('credits',100),clicks:read('clicks',0),missions:read('missions',0),level:read('level',1),reward:read('reward',false),daily:read('daily',''),avatar:read('avatar','astronaut'),name:read('name','AronPro')};
+let toastTimer;
+function toast(s){$('toast').textContent=s;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),2400)}
+function showPage(name,scrollTarget){
+ document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));
+ document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));
+ if(scrollTarget){setTimeout(()=>$(scrollTarget)?.scrollIntoView({behavior:'smooth',block:'start'}),40)}
+ else window.scrollTo({top:0,behavior:'smooth'});
+ if(name==='credits')render();
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page,b.dataset.scroll)));
+function render(){
+ ['balance','creditStat'].forEach(id=>{if($(id))$(id).textContent=state.credits.toLocaleString()});
+ $('clickStat').textContent=Math.min(state.clicks,10)+' / 10';
+ $('levelStat').textContent='LVL '+state.level;
+ $('secretProgress').style.width=Math.min(100,state.clicks*10)+'%';
+ $('secretHint').textContent='Signal strength: '+Math.min(100,state.clicks*10)+'%';
+ $('secretLocked').classList.toggle('hidden',state.clicks>=10);
+ $('secretUnlocked').classList.toggle('hidden',state.clicks<10);
+ $('secretReward').disabled=state.reward;
+ $('secretReward').textContent=state.reward?'Bonus claimed ✓':'Claim +500 credits';
+ $('rewardState').textContent=state.reward?' · Already claimed':'';
+ $('balance').textContent=state.credits.toLocaleString();
+ $('creditProgress').style.width=Math.min(100,(state.credits%1000)/10)+'%';
+ $('playerXp').textContent=(1000+state.missions*100).toLocaleString()+' XP';
+ $('playerName').value=state.name;
+ write('credits',state.credits);write('clicks',state.clicks);write('missions',state.missions);write('level',state.level);write('reward',state.reward);write('daily',state.daily);write('avatar',state.avatar);write('name',state.name);
+}
+let logoClicks=0;
+document.querySelector('.brand').addEventListener('click',()=>{
+ logoClicks++;state.clicks=Math.max(state.clicks,logoClicks);render();
+ if(logoClicks===2)toast('Signal detected…');
+ else if(logoClicks===7)toast('Almost there. Keep looking.');
+ else if(logoClicks===10){toast('Secret discovered ✦');showPage('home','secret')}
+});
+$('secretReward').addEventListener('click',()=>{if(state.reward)return;state.credits+=500;state.reward=true;render();toast('+500 credits added to your demo balance')});
+$('missionBtn').addEventListener('click',()=>{state.credits+=25;state.missions++;state.level=Math.floor(state.missions/3)+1;render();toast('Mission complete · +25 credits')});
+$('dailyBtn').addEventListener('click',()=>{const today=new Date().toDateString();if(state.daily===today){toast('Daily reward already collected');return}state.daily=today;state.credits+=50;render();toast('Daily reward · +50 credits')});
+const avatarInfo={
+ astronaut:{label:'Astronaut',suit:'#e8f8ff',trim:'#42ddff',visor:'#3b8cff',symbol:'✦'},
+ ninja:{label:'Ninja',suit:'#27324a',trim:'#9d5dff',visor:'#151a2c',symbol:'影'},
+ robot:{label:'Robot',suit:'#9aabc8',trim:'#42ddff',visor:'#152a49',symbol:'+'},
+ dragon:{label:'Dragon',suit:'#58c995',trim:'#ffda70',visor:'#1b574b',symbol:'◇'}
+};
+function drawAvatar(key){
+ const a=avatarInfo[key]||avatarInfo.astronaut;
+ $('avatarSvg').innerHTML=`<defs><linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${a.suit}"/><stop offset="1" stop-color="#52658b"/></linearGradient><linearGradient id="faceGrad"><stop stop-color="${a.trim}"/><stop offset="1" stop-color="${a.visor}"/></linearGradient></defs><ellipse cx="110" cy="230" rx="67" ry="11" fill="${a.trim}" opacity=".2"/><path d="M65 141Q31 151 35 192L58 202 79 165M155 141Q190 151 185 192L162 202 141 165" fill="url(#bodyGrad)" stroke="${a.trim}" stroke-width="5"/><rect x="57" y="113" width="106" height="91" rx="30" fill="url(#bodyGrad)" stroke="${a.trim}" stroke-width="5"/><rect x="82" y="143" width="56" height="36" rx="10" fill="#14213d" stroke="${a.trim}" stroke-width="3"/><circle cx="97" cy="160" r="5" fill="${a.trim}"/><circle cx="112" cy="160" r="5" fill="#fff"/><circle cx="127" cy="160" r="5" fill="${a.trim}"/><rect x="72" y="32" width="96" height="101" rx="34" fill="url(#bodyGrad)" stroke="${a.trim}" stroke-width="5"/><rect x="82" y="51" width="76" height="61" rx="22" fill="url(#faceGrad)" stroke="#101a30" stroke-width="5"/><path d="M94 67Q116 51 143 65" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".7"/><text x="110" y="100" font-size="23" text-anchor="middle" font-weight="900" fill="#fff">${a.symbol}</text><path d="M80 37L92 23 105 35M140 35L153 23 164 39" fill="${a.suit}" stroke="${a.trim}" stroke-width="4"/><path d="M79 197L73 222Q72 231 83 231H103L110 203M141 197L147 222Q148 231 137 231H117L110 203" fill="url(#bodyGrad)" stroke="${a.trim}" stroke-width="5"/>`;
+ $('avatarStage').setAttribute('aria-label',a.label+' avatar');
+}
+document.querySelectorAll('.avatar-pick').forEach(b=>b.addEventListener('click',()=>{
+ state.avatar=b.dataset.avatar;
+ document.querySelectorAll('.avatar-pick').forEach(x=>x.classList.toggle('selected',x===b));
+ drawAvatar(state.avatar);write('avatar',state.avatar);
+}));
+$('saveAvatar').addEventListener('click',()=>{state.name=$('playerName').value.trim().slice(0,18)||'Player';render();toast('Player profile saved')});
+drawAvatar(state.avatar);
+document.querySelectorAll('.avatar-pick').forEach(b=>b.classList.toggle('selected',b.dataset.avatar===state.avatar));
+render();
+})();
+</script>
+</body>
+</html>
